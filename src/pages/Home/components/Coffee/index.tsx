@@ -23,6 +23,16 @@ export function Coffee({
 }: CoffeeProps) {
   const [quantity, setQuantity] = useState(1);
 
+  function handleIncreaseQuantity() {
+    setQuantity(prevQuantity => prevQuantity + 1);
+  }
+
+  function handleDecreaseQuantity() {
+    setQuantity(prevQuantity => (prevQuantity === 0 ? 0 : prevQuantity - 1));
+  }
+
+  const isAddToCartDisabled = quantity === 0;
+
   return (
     <CoffeeContainer>
       <img src={imgSrc} alt={name} />
@@ -39,15 +49,15 @@ export function Coffee({
 
         <CoffeeFoterCartButtons>
           <div>
-            <button>
+            <button onClick={handleDecreaseQuantity}>
               <Minus weight="bold" />
             </button>{' '}
             <span>{quantity}</span>{' '}
-            <button>
+            <button onClick={handleIncreaseQuantity}>
               <Plus weight="bold" />
             </button>
           </div>
-          <button>
+          <button disabled={isAddToCartDisabled}>
             <ShoppingCart weight="fill" size={22} />
           </button>
         </CoffeeFoterCartButtons>

@@ -18,7 +18,7 @@ export const CoffeeContainer = styled.div`
   transition: 100ms;
 
   &:hover {
-    transform: translateY(-8px);
+    transform: scale(1.05, 1.05);
   }
 
   img {
@@ -116,6 +116,7 @@ export const CoffeeFoterCartButtons = styled.div`
       color: ${props => props.theme.baseTitle};
       line-height: 20.8px;
       font-size: 1rem;
+      font-family: 'Baloo 2', sans-serif;
     }
   }
 
@@ -130,8 +131,13 @@ export const CoffeeFoterCartButtons = styled.div`
 
     transition: 200ms;
 
-    &:hover {
+    &:hover:not(:disabled) {
       filter: brightness(0.8);
+    }
+
+    &:disabled {
+      background: ${props => props.theme.baseButton};
+      cursor: not-allowed;
     }
 
     svg {
