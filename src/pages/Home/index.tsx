@@ -1,10 +1,38 @@
-import { ShoppingCart, Coffee, Timer, Package } from 'phosphor-react';
+import {
+  ShoppingCart,
+  Timer,
+  Package,
+  Coffee as CoffeeIcon,
+} from 'phosphor-react';
+import { useEffect, useState } from 'react';
 
 import homeBannerImg from '../../assets/banner-cup.svg';
+import { api } from '../../services/api';
+import { Coffee } from './components/Coffee';
 
-import { BannerContainer, BannerItemsContainer, BannerItem } from './styles';
+import {
+  BannerContainer,
+  BannerItemsContainer,
+  BannerItem,
+  ProductsContainer,
+} from './styles';
+
+interface CoffeeData {
+  id: number;
+  name: string;
+  description: string;
+  categories: string[];
+  price: number;
+  imgSrc: string;
+}
 
 export function Home() {
+  const [coffees, setCoffees] = useState<CoffeeData[]>([]);
+
+  useEffect(() => {
+    api.get<CoffeeData[]>('/').then(response => setCoffees(response.data));
+  }, []);
+
   return (
     <main>
       <BannerContainer>
@@ -39,7 +67,7 @@ export function Home() {
 
             <BannerItem iconColor="purple500">
               <div>
-                <Coffee weight="fill" />
+                <CoffeeIcon weight="fill" />
               </div>
               <span>O café chega fresquinho até você</span>
             </BannerItem>
@@ -47,6 +75,23 @@ export function Home() {
         </aside>
         <img src={homeBannerImg} alt="Coffee cup" />
       </BannerContainer>
+
+      <ProductsContainer>
+        <h2>Nossos cafés</h2>
+
+        <div>
+          {coffees.map(coffee => (
+            <Coffee
+              key={coffee.id}
+              name={coffee.name}
+              categories={coffee.categories}
+              description={coffee.description}
+              imgSrc={coffee.imgSrc}
+              price={coffee.price}
+            />
+          ))}
+        </div>
+      </ProductsContainer>
     </main>
   );
 }

@@ -8,7 +8,7 @@ export const BannerContainer = styled.section`
 
   &:before {
     content: '';
-    position: fixed;
+    position: absolute;
     left: 0;
     right: 0;
     z-index: -1;
@@ -75,5 +75,24 @@ export const BannerItem = styled.div<BannerItemProps>`
   }
   span {
     line-height: 1.3;
+  }
+`;
+
+export const ProductsContainer = styled.section`
+  padding: 2rem 0;
+
+  h2 {
+    font-weight: 800;
+    font-size: 2rem;
+    line-height: 41.6px;
+    font-family: 'Baloo 2', sans-serif;
+    color: ${props => props.theme.baseSubtitle};
+    margin-bottom: 3.375rem;
+  }
+
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
   }
 `;
