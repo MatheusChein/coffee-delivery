@@ -1,12 +1,13 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react';
 import { useState } from 'react';
+import { useCart } from '../../../../hooks/useCart';
 import {
   CoffeeContainer,
   CoffeeFooter,
   CoffeeFoterCartButtons,
 } from './styles';
 
-interface CoffeeProps {
+export interface CoffeeProps {
   name: string;
   description: string;
   categories: string[];
@@ -23,6 +24,10 @@ export function Coffee({
 }: CoffeeProps) {
   const [quantity, setQuantity] = useState(1);
 
+  const { addToCart } = useCart();
+
+  const isAddToCartDisabled = quantity === 0;
+
   function handleIncreaseQuantity() {
     setQuantity(prevQuantity => prevQuantity + 1);
   }
@@ -31,14 +36,23 @@ export function Coffee({
     setQuantity(prevQuantity => (prevQuantity === 0 ? 0 : prevQuantity - 1));
   }
 
-  const isAddToCartDisabled = quantity === 0;
+  function handleAddoToCart() {
+    addToCart({
+      name,
+      description,
+      imgSrc,
+      categories,
+      price,
+      quantity,
+    });
+  }
 
   return (
     <CoffeeContainer>
       <img src={imgSrc} alt={name} />
       <div>
         {categories.map(category => (
-          <p>{category}</p>
+          <p key={category}>{category}</p>
         ))}
       </div>
       <h4>{name}</h4>
@@ -51,13 +65,13 @@ export function Coffee({
           <div>
             <button onClick={handleDecreaseQuantity}>
               <Minus weight="bold" />
-            </button>{' '}
-            <span>{quantity}</span>{' '}
+            </button>
+            <span>{quantity}</span>
             <button onClick={handleIncreaseQuantity}>
               <Plus weight="bold" />
             </button>
           </div>
-          <button disabled={isAddToCartDisabled}>
+          <button disabled={isAddToCartDisabled} onClick={handleAddoToCart}>
             <ShoppingCart weight="fill" size={22} />
           </button>
         </CoffeeFoterCartButtons>

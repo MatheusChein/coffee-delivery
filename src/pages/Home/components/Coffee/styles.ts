@@ -15,12 +15,6 @@ export const CoffeeContainer = styled.div`
 
   position: relative;
 
-  transition: 100ms;
-
-  &:hover {
-    transform: scale(1.05, 1.05);
-  }
-
   img {
     height: 120px;
     width: 120px;
@@ -104,11 +98,11 @@ export const CoffeeFoterCartButtons = styled.div`
       color: ${props => props.theme.purple500};
       margin-top: 2px;
 
-      transition: 200ms;
+      transition: 150ms;
 
       &:hover {
         filter: brightness(0.5);
-        transform: rotate(360deg);
+        transform: scale(1.2);
       }
     }
 
@@ -129,10 +123,11 @@ export const CoffeeFoterCartButtons = styled.div`
     border-radius: 6px;
     border: none;
 
-    transition: 200ms;
+    transition: 150ms;
 
     &:hover:not(:disabled) {
       filter: brightness(0.8);
+      transform: scale(1.1);
     }
 
     &:disabled {
