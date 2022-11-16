@@ -83,37 +83,6 @@ export const CoffeeFoterCartButtons = styled.div`
   align-items: center;
   gap: 0.5rem;
 
-  > div {
-    display: flex;
-    justify-content: space-around;
-    gap: 0.25rem;
-    padding: 0.5rem;
-    width: 4.5rem;
-    border-radius: 4px;
-    background: ${props => props.theme.baseButton};
-
-    button {
-      background: transparent;
-      border: none;
-      color: ${props => props.theme.purple500};
-      margin-top: 2px;
-
-      transition: 150ms;
-
-      &:hover {
-        filter: brightness(0.5);
-        transform: scale(1.2);
-      }
-    }
-
-    span {
-      color: ${props => props.theme.baseTitle};
-      line-height: 20.8px;
-      font-size: 1rem;
-      font-family: 'Baloo 2', sans-serif;
-    }
-  }
-
   > button {
     align-self: center;
     display: flex;

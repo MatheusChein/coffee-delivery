@@ -1,5 +1,6 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react';
 import { useState } from 'react';
+import { CounterButton } from '../../../../components/CounterButton';
 import { useCart } from '../../../../hooks/useCart';
 import {
   CoffeeContainer,
@@ -62,15 +63,12 @@ export function Coffee({
         <span>{price.toFixed(2)}</span>
 
         <CoffeeFoterCartButtons>
-          <div>
-            <button onClick={handleDecreaseQuantity}>
-              <Minus weight="bold" />
-            </button>
-            <span>{quantity}</span>
-            <button onClick={handleIncreaseQuantity}>
-              <Plus weight="bold" />
-            </button>
-          </div>
+          <CounterButton
+            handleDecreaseQuantity={handleDecreaseQuantity}
+            handleIncreaseQuantity={handleIncreaseQuantity}
+            quantity={quantity}
+          />
+
           <button disabled={isAddToCartDisabled} onClick={handleAddoToCart}>
             <ShoppingCart weight="fill" size={22} />
           </button>

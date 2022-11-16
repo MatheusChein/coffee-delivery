@@ -47,7 +47,8 @@ function CartContextProvider({ children }: CartContextProviderProps) {
         setCoffees(coffeesCopy);
       }
 
-      toast.success('Added to cart successfully', {
+      toast.success(`${coffeeToAdd.name} adicionado ao carrinho`, {
+        duration: 2000,
         iconTheme: {
           primary: '#8047f8',
           secondary: '#fff',
